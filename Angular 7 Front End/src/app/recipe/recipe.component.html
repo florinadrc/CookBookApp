@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <app-recipes></app-recipes>
+    </div>
+    <div class="col-9">
+      <app-search-recipe></app-search-recipe>
+      <br>
+      <br>
+      <h3 class="display-3">Recipe name: {{recipe.recipeName}}</h3>
+      <br>
+      <br>
+      <h4 class="display-4">Recipe category: {{recipe.recipeCategory}}</h4>
+      <br>
+      <br>
+      <h4 class="display-4">Ingredients:</h4>
+      <ul>
+        <li *ngFor="let ing of recipe.ingredientsList">{{ing.ingredientName}} {{ing.quantity}}</li>
+      </ul>
+      <br>
+      <br>
+      <p>Instructions:</p>
+      <p>{{recipe.instructions}}</p>
+      <br>
+      <br>
+      <p>Suggestions:</p>
+      <p>{{recipe.suggestions}}</p>
+      <br>
+      <br>
+      <br>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with two buttons">
+        <button type="button"><a routerLink="/update_recipe/{{recipe.recipeId}}" style="margin-right: 40px;">Update recipe</a></button>
+        <button type="button" (click)="deleteThisRecipe()">Delete recipe</button>
+      </div>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>

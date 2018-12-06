@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <app-recipes></app-recipes>
+    </div>
+    <div class="col-9 mt-5">
+      <form name="updateRecipeForm" #f="ngForm" (ngSubmit)="f.form.valid && sendRecipe()">
+
+        <div class="form-group my-3">
+          <label for="recipeNameInputField">Recipe name:</label>
+          <input type="text"
+                 class="form-control"
+                 id="recipeNameInputField"
+                 value="{{recipe.recipeName}}"
+                 [(ngModel)]="recipe.recipeName"
+                 name="recipeNameInputField"
+                 #name="ngModel"
+                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"
+                 required/>
+          <div *ngIf="f.submitted && name.invalid" class="invalid-input">
+            <div *ngIf="name.errors?.required">Name is not valid</div>
+          </div>
+        </div>
+
+        <div class="form-group my-3">
+          <label for="recipeCategoryControlSelect">Select category</label>
+          <select class="form-control" name="recipeCategoryControlSelect" (change)="filterCategory($event.target.value)" [(ngModel)]="recipe.recipeCategory" id="recipeCategoryControlSelect">
+            <option *ngFor="let opt of opts" [value]="opt.id">{{opt.name}}</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="ingredientInputForm">Ingredients:</label>
+          <form class="form-inline" id="ingredientInputForm">
+            <input type="text" class="form-control col-6 mr-2" name="ingredientName" placeholder="Enter ingredient" [(ngModel)]="ingredient.ingredientName" >
+            <input type="text" class="form-control col-4 mr-2" name="ingredientQuantity" placeholder="Enter quantity" [(ngModel)]="ingredient.quantity" >
+            <button type="submit" class="btn btn-success" (click)="addToIngredientsList()">Add ingredient</button>
+          </form>
+
+          <div class="container-fluid">
+            <ul class="list-group list-group-flush ml-1 mr-5 mt-4" style="max-height: 250px; overflow: scroll; -webkit-overflow-scrolling: touch">
+              <li *ngFor="let ing of recipe.ingredientsList">{{ing.ingredientName}} {{ing.quantity}}     <button type="button" class="close" aria-label="Close" (click)="deleteFromIngredientsList(ing)"><span aria-hidden="true">&times;</span></button></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-group my-3">
+          <label for="instructionsTextArea">Instructions:</label>
+          <textarea class="form-control"
+                    id="instructionsTextArea"
+                    rows="8"
+                    [(ngModel)]="recipe.instructions"
+                    name="instructionsTextArea"
+                    #instructions="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && instructions.invalid }"
+                    required
+                    minlength="10">{{recipe.instructions}}</textarea>
+          <div *ngIf="f.submitted && instructions.invalid" class="invalid-input">
+            <div *ngIf="instructions.errors?.required">Field is required</div>
+            <div *ngIf="instructions.errors?.minlength">Field is too small (needs more than 10 characters)</div>
+          </div>
+        </div>
+
+        <div class="form-group my-3">
+          <label for="suggestionsTextArea">Serving suggestions:</label>
+          <textarea class="form-control"
+                    id="suggestionsTextArea"
+                    rows="8" [(ngModel)]="recipe.suggestions"
+                    name="suggestionsTextArea">{{recipe.suggestions}}</textarea>
+        </div>
+
+        <div class="container-fluid my-5">
+          <div class="row">
+            <div class="col-7"></div>
+            <div class="col"></div>
+            <div class="col">
+              <button type="submit" class="btn btn-info">Update recipe</button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
