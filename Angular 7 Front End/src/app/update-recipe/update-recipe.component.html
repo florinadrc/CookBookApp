@@ -3,7 +3,14 @@
     <div class="col-3">
       <app-recipes></app-recipes>
     </div>
-    <div class="col-9 mt-5">
+    <div class="col-9">
+      <app-search-recipe></app-search-recipe>
+
+      <br>
+      <br>
+
+      <h1 class="text-center">Update recipe</h1>
+
       <form name="updateRecipeForm" #f="ngForm" (ngSubmit)="f.form.valid && sendRecipe()">
 
         <div class="form-group my-3">
