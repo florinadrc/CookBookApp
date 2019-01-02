@@ -48,7 +48,7 @@ export class ApiService {
   }
 
   searchRecipes(term: string): Observable<Recipe[]> {
-    let url = `${this.BASE_URL}/all/by_name/?recipeName=${term}`;
+    let url = `${this.BASE_URL}/all/by_name/${term}`;
     if(!term.trim())
       return of([]);
     return this.http.get<Recipe[]>(url);

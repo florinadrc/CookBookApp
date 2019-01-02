@@ -2,12 +2,14 @@
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
   border-right: 1px solid gray;
-  width:195px;
-  height: 16px;
+  flex-grow: 1;
+  height: 35px;
   padding: 5px;
   background-color: white;
   cursor: pointer;
   list-style-type: none;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .search-result li:hover {

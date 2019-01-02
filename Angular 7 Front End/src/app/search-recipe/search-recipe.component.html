@@ -1,5 +1,5 @@
 <div class="container-fluid mt-5">
-  <input #searchBox id="searchRecipeInput" (input)="search(searchBox.value)" placeholder="Search for recipe name">
+  <input #searchBox class="form-control" (input)="search(searchBox.value)" placeholder="Search for recipe name">
 
   <ul class="search-result">
     <li *ngFor="let recipe of recipes$ | async">
