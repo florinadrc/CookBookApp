@@ -3,7 +3,7 @@
     <button type="button" class="btn btn-secondary" (click)="getAllRecipes()">All</button>
     <button type="button" class="btn btn-secondary" *ngFor="let opt of opts" (click)="getAllByCategory(opt.id)">{{opt.name}}</button>
   </div>
-  <div class="list-group ml-0 mb-5" style="max-height: 850px; overflow: scroll; -webkit-overflow-scrolling: touch">
-    <a *ngFor="let recipe of recipes" routerLink="/recipe/{{recipe.recipeId}}">{{recipe.recipeName}}</a>
+  <div class="list-group ml-0" style="overflow: scroll; -webkit-overflow-scrolling: touch">
+    <a class="list-group-item-action" *ngFor="let recipe of recipes" routerLink="/recipe/{{recipe.recipeId}}" style="padding: 8px 0px">{{recipe.recipeName}}</a>
   </div>
 </div>
