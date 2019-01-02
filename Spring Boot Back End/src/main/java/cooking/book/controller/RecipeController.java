@@ -36,9 +36,9 @@ public class RecipeController {
         return recipeRepository.findAllByRecipeCategory(recipeCategory);
     }
 
-    @GetMapping(value = "/all/by_name/?recipeName={term}")
+    @GetMapping(value = "/all/by_name/{term}")
     public Iterable<Recipe> getAllByName(@PathVariable String term){
-        return recipeRepository.findAllByRecipeName(term);
+        return recipeRepository.findAllByRecipeNameContainingIgnoreCase(term);
     }
 
     @PostMapping(value = "/create")

@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface RecipeRepository extends CrudRepository<Recipe, Long> {
     Iterable<Recipe> findAllByRecipeCategory(RecipeCategory recipeCategory);
-    Iterable<Recipe> findAllByRecipeName(String recipeName);
+    Iterable<Recipe> findAllByRecipeNameContainingIgnoreCase(String recipeName);
 }
