@@ -1,6 +1,6 @@
 package cooking.book.controller;
 
-import cooking.book.dao.IngredientDAO;
+import cooking.book.repos.IngredientRepository;
 import cooking.book.model.Ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +12,11 @@ import java.util.List;
 @CrossOrigin
 public class IngredientController {
 
-    private IngredientDAO ingredientDAO;
+    private IngredientRepository ingredientRepository;
 
     @Autowired
-    public IngredientController(IngredientDAO ingredientDAO){
-        this.ingredientDAO = ingredientDAO;
+    public IngredientController(IngredientRepository ingredientRepository){
+        this.ingredientRepository = ingredientRepository;
     }
 
     @PostMapping(value = "/create")

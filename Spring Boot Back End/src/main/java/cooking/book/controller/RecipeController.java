@@ -1,6 +1,6 @@
 package cooking.book.controller;
 
-import cooking.book.dao.RecipeDAO;
+import cooking.book.repos.RecipeRepository;
 import cooking.book.model.Recipe;
 import cooking.book.model.RecipeCategory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +14,16 @@ import java.util.Optional;
 @CrossOrigin
 public class RecipeController {
 
-    private RecipeDAO recipeDAO;
+    private RecipeRepository recipeRepository;
 
     @Autowired
-    public RecipeController(RecipeDAO recipeDAO){
-        this.recipeDAO = recipeDAO;
+    public RecipeController(RecipeRepository recipeRepository){
+        this.recipeRepository = recipeRepository;
     }
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Recipe> getAll(){
-        return recipeDAO.findAll();
+        return recipeRepository.findAll();
     }
 
     @GetMapping(value = "/all/by_category/{theCategory}")
@@ -33,33 +33,33 @@ public class RecipeController {
             recipeCategory = RecipeCategory.MAIN_COURSE;
         if(theCategory.equals("2"))
             recipeCategory = RecipeCategory.DESSERT;
-        return recipeDAO.findAllByRecipeCategory(recipeCategory);
+        return recipeRepository.findAllByRecipeCategory(recipeCategory);
     }
 
     @GetMapping(value = "/all/by_name/?recipeName={term}")
     public Iterable<Recipe> getAllByName(@PathVariable String term){
-        return recipeDAO.findAllByRecipeName(term);
+        return recipeRepository.findAllByRecipeName(term);
     }
 
     @PostMapping(value = "/create")
     public Recipe postRecipe(@RequestBody Recipe recipe){
-        recipeDAO.save(recipe);
+        recipeRepository.save(recipe);
         return recipe;
     }
 
     @DeleteMapping(value = "/delete/{id}")
     public void deleteRecipe(@PathVariable long id){
-        recipeDAO.deleteById(id);
+        recipeRepository.deleteById(id);
     }
 
     @GetMapping(value = "/recipe/{id}")
     public Recipe getRecipe(@PathVariable long id){
-        return recipeDAO.findById(id).orElse(null);
+        return recipeRepository.findById(id).orElse(null);
     }
 
     @PostMapping(value = "/update/{id}")
     public Recipe updateRecipe(@RequestBody Recipe recipe, @PathVariable long id){
-        Optional<Recipe> recipe1 = recipeDAO.findById(id);
+        Optional<Recipe> recipe1 = recipeRepository.findById(id);
 
         if(recipe1.isPresent()){
             Recipe _recipe = recipe1.get();
@@ -69,7 +69,7 @@ public class RecipeController {
             _recipe.setInstructions(recipe.getInstructions());
             _recipe.setSuggestions(recipe.getSuggestions());
 
-            recipeDAO.save(_recipe);
+            recipeRepository.save(_recipe);
             return _recipe;
         } else {
             return null;
