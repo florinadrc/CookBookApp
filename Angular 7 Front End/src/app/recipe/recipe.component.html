@@ -7,30 +7,35 @@
       <app-search-recipe></app-search-recipe>
       <br>
       <br>
-      <h3 class="display-3">Recipe name: {{recipe.recipeName}}</h3>
+      <h1 class="display-3 text-center">{{recipe.recipeName}}</h1>
       <br>
       <br>
-      <h4 class="display-4">Recipe category: {{recipe.recipeCategory}}</h4>
       <br>
+      <h4>Ingredients:</h4>
       <br>
-      <h4 class="display-4">Ingredients:</h4>
-      <ul>
-        <li *ngFor="let ing of recipe.ingredientsList">{{ing.ingredientName}} {{ing.quantity}}</li>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let ing of recipe.ingredientsList">{{ing.ingredientName}} {{ing.quantity}}</li>
       </ul>
       <br>
       <br>
-      <p>Instructions:</p>
-      <p>{{recipe.instructions}}</p>
+      <h4>Instructions:</h4>
+      <br>
+      <p class="border border-light rounded">{{recipe.instructions}}</p>
       <br>
       <br>
-      <p>Suggestions:</p>
-      <p>{{recipe.suggestions}}</p>
+      <h4>Suggestions:</h4>
+      <br>
+      <p class="border border-light rounded">{{recipe.suggestions}}</p>
       <br>
       <br>
       <br>
-      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with two buttons">
-        <button type="button"><a routerLink="/update_recipe/{{recipe.recipeId}}" style="margin-right: 40px;">Update recipe</a></button>
-        <button type="button" (click)="deleteThisRecipe()">Delete recipe</button>
+      <div class="row">
+        <div class="col-2">
+          <button type="button" class="btn btn-info"><a routerLink="/update_recipe/{{recipe.recipeId}}" style="text-decoration: none; color: white">Update recipe</a></button>
+        </div>
+        <div class="col-10">
+          <button type="button" class="btn btn-danger" (click)="deleteThisRecipe()">Delete recipe</button>
+        </div>
       </div>
       <br>
       <br>

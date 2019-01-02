@@ -53,7 +53,7 @@ export class NewRecipeComponent implements OnInit {
       err => {
         alert("An error has occurred while sending recipe details");
       }
-    )
+    );
   }
 
   addToIngredientsList(): void {

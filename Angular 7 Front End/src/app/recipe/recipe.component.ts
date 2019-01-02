@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../services/api.service";
 import {ActivatedRoute} from "@angular/router";
 import {Recipe} from "../model/recipe";
@@ -11,7 +11,7 @@ import {Location} from "@angular/common";
 })
 export class RecipeComponent implements OnInit {
 
-  @Input() recipe: Recipe;
+  recipe: Recipe;
 
   constructor(
     private apiService: ApiService,
