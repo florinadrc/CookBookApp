@@ -1,9 +1,9 @@
 package cooking.book;
 
-import cooking.book.repos.RecipeRepository;
-import cooking.book.model.Ingredient;
-import cooking.book.model.Recipe;
-import cooking.book.model.RecipeCategory;
+import cooking.book.repository.recipe.RecipeRepository;
+import cooking.book.model.recipe.Ingredient;
+import cooking.book.model.recipe.Recipe;
+import cooking.book.model.recipe.RecipeCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
