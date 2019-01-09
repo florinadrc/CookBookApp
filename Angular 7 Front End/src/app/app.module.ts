@@ -13,6 +13,12 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { HomeComponent } from './home/home.component';
 import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+import { AdminComponent } from './admin/admin.component';
+
+import { httpInterceptorProviders } from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,11 @@ import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
     RecipeComponent,
     HomeComponent,
     UpdateRecipeComponent,
-    SearchRecipeComponent
+    SearchRecipeComponent,
+    LoginComponent,
+    RegisterComponent,
+    UserComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +42,7 @@ import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
