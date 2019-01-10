@@ -15,8 +15,6 @@ import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UserComponent } from './user/user.component';
-import { AdminComponent } from './admin/admin.component';
 
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 
@@ -32,9 +30,7 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
     UpdateRecipeComponent,
     SearchRecipeComponent,
     LoginComponent,
-    RegisterComponent,
-    UserComponent,
-    AdminComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

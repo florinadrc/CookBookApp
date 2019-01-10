@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from "../auth/token-storage.service";
 
 @Component({
@@ -18,10 +18,5 @@ export class HomeComponent implements OnInit {
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
-  }
-
-  logout() {
-    this.token.signOut();
-    window.location.reload();
   }
 }

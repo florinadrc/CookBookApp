@@ -17,12 +17,33 @@
         <br>
         <br>
         <br>
-        <button class="btn btn-secondary" (click)="logout()">Logout</button>
       </div>
     </div>
   </div>
 
   <ng-template #loggedOut>
-    Please login.
+    <div class="container text-center">
+      <br>
+      <br>
+      <br>
+      <h2>Welcome to CookBook - a recipe database application</h2>
+      <br>
+      <br>
+      <h4>Please login:</h4>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-5"></div>
+        <div class="col-5">
+          <app-login></app-login>
+        </div>
+        <div class="col-2"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
   </ng-template>
 </div>
