@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @RestController
@@ -43,6 +44,7 @@ public class RecipeController {
 
     @PostMapping(value = "/create")
     public Recipe postRecipe(@RequestBody Recipe recipe){
+        recipe.setLastAccessed(new Date());
         recipeRepository.save(recipe);
         return recipe;
     }
@@ -54,7 +56,19 @@ public class RecipeController {
 
     @GetMapping(value = "/recipe/{id}")
     public Recipe getRecipe(@PathVariable long id){
-        return recipeRepository.findById(id).orElse(null);
+        Recipe recipe = recipeRepository.findById(id).orElse(null);
+        Recipe recipe1 = new Recipe();
+
+        if (recipe != null) {
+            recipe1.setRecipeId(recipe.getRecipeId());
+            copyRecipe(recipe1, recipe);
+            recipe.setLastAccessed(new Date());
+            recipe.setNoOfTimesAccessed(recipe1.getNoOfTimesAccessed() + 1);
+        }
+
+        recipeRepository.save(recipe);
+
+        return recipe1;
     }
 
     @PostMapping(value = "/update/{id}")
@@ -63,16 +77,22 @@ public class RecipeController {
 
         if(recipe1.isPresent()){
             Recipe _recipe = recipe1.get();
-            _recipe.setRecipeName(recipe.getRecipeName());
-            _recipe.setRecipeCategory(recipe.getRecipeCategory());
-            _recipe.setIngredientsList(recipe.getIngredientsList());
-            _recipe.setInstructions(recipe.getInstructions());
-            _recipe.setSuggestions(recipe.getSuggestions());
+            copyRecipe(_recipe, recipe);
 
             recipeRepository.save(_recipe);
             return _recipe;
         } else {
             return null;
         }
+    }
+
+    private void copyRecipe(Recipe recipe1, Recipe recipe2) {
+        recipe1.setRecipeName(recipe2.getRecipeName());
+        recipe1.setRecipeCategory(recipe2.getRecipeCategory());
+        recipe1.setIngredientsList(recipe2.getIngredientsList());
+        recipe1.setInstructions(recipe2.getInstructions());
+        recipe1.setSuggestions(recipe2.getSuggestions());
+        recipe1.setLastAccessed(recipe2.getLastAccessed());
+        recipe1.setNoOfTimesAccessed(recipe2.getNoOfTimesAccessed());
     }
 }

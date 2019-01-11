@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -33,6 +34,10 @@ public class Recipe implements Serializable {
 
     @Column(columnDefinition = "LONGTEXT")
     private String suggestions;
+
+    private Date lastAccessed;
+
+    private long noOfTimesAccessed;
 
     public Recipe(){}
 
@@ -91,5 +96,21 @@ public class Recipe implements Serializable {
 
     public void setSuggestions(String suggestions) {
         this.suggestions = suggestions;
+    }
+
+    public Date getLastAccessed() {
+        return lastAccessed;
+    }
+
+    public void setLastAccessed(Date lastAccessed) {
+        this.lastAccessed = lastAccessed;
+    }
+
+    public long getNoOfTimesAccessed() {
+        return noOfTimesAccessed;
+    }
+
+    public void setNoOfTimesAccessed(long noOfTimesAccessed) {
+        this.noOfTimesAccessed = noOfTimesAccessed;
     }
 }
