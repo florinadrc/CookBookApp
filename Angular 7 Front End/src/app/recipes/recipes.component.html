@@ -1,9 +1,9 @@
-<div style="max-width: 350px;">
+<div style="max-width: 350px">
   <div class="btn-group" role="group" aria-label="Recipe categories">
     <button type="button" class="btn btn-secondary" (click)="getAllRecipes()">All</button>
     <button type="button" class="btn btn-secondary" *ngFor="let opt of opts" (click)="getAllByCategory(opt.id)">{{opt.name}}</button>
   </div>
-  <div class="list-group ml-0" style="overflow: scroll; -webkit-overflow-scrolling: touch">
+  <div class="list-group ml-0" style="overflow: scroll; -webkit-overflow-scrolling: touch; max-height: 750px">
     <a class="list-group-item-action" *ngFor="let recipe of recipes" routerLink="/recipe/{{recipe.recipeId}}" style="padding: 8px 0px">{{recipe.recipeName}}</a>
   </div>
 </div>

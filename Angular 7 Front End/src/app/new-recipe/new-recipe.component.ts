@@ -19,7 +19,9 @@ export class NewRecipeComponent implements OnInit {
     recipeCategory: RecipeCategory.STARTER,
     ingredientsList: [],
     instructions:'',
-    suggestions:''
+    suggestions:'',
+    lastAccessed:'',
+    noOfTimesAccessed: 0
   };
 
   ingredient: Ingredient = {

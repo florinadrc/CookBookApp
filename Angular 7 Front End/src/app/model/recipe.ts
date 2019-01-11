@@ -8,4 +8,6 @@ export interface Recipe {
   ingredientsList: Ingredient[];
   instructions: string;
   suggestions: string;
+  lastAccessed: string;
+  noOfTimesAccessed: number;
 }

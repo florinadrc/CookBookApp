@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { httpInterceptorProviders } from './auth/auth-interceptor';
+import { PopularComponent } from './popular/popular.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
     UpdateRecipeComponent,
     SearchRecipeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PopularComponent
   ],
   imports: [
     BrowserModule,

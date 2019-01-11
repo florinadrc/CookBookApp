@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../services/api.service";
 import {ActivatedRoute} from "@angular/router";
 import {Recipe} from "../model/recipe";
-import {Location} from "@angular/common";
+import {formatDate, Location} from "@angular/common";
 
 @Component({
   selector: 'app-recipe',

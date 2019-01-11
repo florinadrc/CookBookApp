@@ -27,6 +27,11 @@ export class ApiService {
     return this.http.get<Recipe[]>(url);
   }
 
+  getRecipesByNoOfAccesses(): Observable<Recipe[]> {
+    let url = `${this.BASE_URL}/all/by_accesses`;
+    return this.http.get<Recipe[]>(url);
+  }
+
   getRecipesByCategory(recipeCategory: RecipeCategory): Observable<Recipe[]> {
     let url = `${this.BASE_URL}/all/by_category/${recipeCategory}`;
     return this.http.get<Recipe[]>(url);
