@@ -27,6 +27,11 @@ public class RecipeController {
         return recipeRepository.findAll();
     }
 
+    @GetMapping(value = "/all/by_accesses")
+    public Iterable<Recipe> getAllByNoOfAccesses(){
+        return recipeRepository.findAllByOrderByNoOfTimesAccessedDesc();
+    }
+
     @GetMapping(value = "/all/by_category/{theCategory}")
     public Iterable<Recipe> getAllByCategory(@PathVariable String theCategory){
         RecipeCategory recipeCategory = RecipeCategory.STARTER;
