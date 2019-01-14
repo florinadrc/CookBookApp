@@ -14,18 +14,22 @@
       <h4>Ingredients:</h4>
       <br>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let ing of recipe.ingredientsList">{{ing.ingredientName}} {{ing.quantity}}</li>
+        <li class="list-group-item" *ngFor="let ing of recipe.ingredientsList">{{ing.ingredientName}}, {{ing.quantity}}</li>
       </ul>
       <br>
       <br>
       <h4>Instructions:</h4>
       <br>
-      <p class="border border-light rounded">{{recipe.instructions}}</p>
+      <div class="border border-light rounded">
+        <p *ngFor="let inst of instructions">{{inst}}</p>
+      </div>
       <br>
       <br>
       <h4>Serving suggestions:</h4>
       <br>
-      <p class="border border-light rounded">{{recipe.suggestions}}</p>
+      <div class="border border-light rounded">
+        <p *ngFor="let sug of suggestions">{{sug}}</p>
+      </div>
       <br>
       <br>
       <br>

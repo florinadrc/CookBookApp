@@ -1,36 +1,90 @@
-<div class="container-fluid">
+<div class="container-fluid text-center">
   <div class="row">
     <div class="col-3">
-      <div class="card bg-light">
-        <div class="card-body">
-          <h4>{{recipes[0].recipeName}}</h4>
-          <strong class="text-info" style="font-size: small">Last accessed at {{recipes[0].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+      <a routerLink="/recipe/{{recipes[0].recipeId}}" style="text-decoration: none; color: black">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h4>{{recipes[0].recipeName}}</h4>
+            <strong class="text-info" style="font-size: small">Last accessed at {{recipes[0].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
     <div class="col-3">
-      <div class="card bg-light">
-        <div class="card-body">
-          <h4>{{recipes[1].recipeName}}</h4>
-          <strong class="text-info" style="font-size: small">Last accessed at {{recipes[0].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+      <a routerLink="/recipe/{{recipes[1].recipeId}}" style="text-decoration: none; color: black">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h4>{{recipes[1].recipeName}}</h4>
+            <strong class="text-info" style="font-size: small">Last accessed at {{recipes[1].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
     <div class="col-3">
-      <div class="card bg-light">
-        <div class="card-body">
-          <h4>{{recipes[2].recipeName}}</h4>
-          <strong class="text-info" style="font-size: small">Last accessed at {{recipes[0].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+      <a routerLink="/recipe/{{recipes[2].recipeId}}" style="text-decoration: none; color: black">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h4>{{recipes[2].recipeName}}</h4>
+            <strong class="text-info" style="font-size: small">Last accessed at {{recipes[2].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
     <div class="col-3">
-      <div class="card bg-light">
-        <div class="card-body">
-          <h4>{{recipes[3].recipeName}}</h4>
-          <strong class="text-info" style="font-size: small">Last accessed at {{recipes[0].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+      <a routerLink="/recipe/{{recipes[3].recipeId}}" style="text-decoration: none; color: black">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h4>{{recipes[3].recipeName}}</h4>
+            <strong class="text-info" style="font-size: small">Last accessed at {{recipes[3].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+          </div>
         </div>
-      </div>
+      </a>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col-3">
+      <a routerLink="/recipe/{{recipes[4].recipeId}}" style="text-decoration: none; color: black">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h4>{{recipes[4].recipeName}}</h4>
+            <strong class="text-info" style="font-size: small">Last accessed at {{recipes[4].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-3">
+      <a routerLink="/recipe/{{recipes[5].recipeId}}" style="text-decoration: none; color: black">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h4>{{recipes[5].recipeName}}</h4>
+            <strong class="text-info" style="font-size: small">Last accessed at {{recipes[5].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-3">
+      <a routerLink="/recipe/{{recipes[6].recipeId}}" style="text-decoration: none; color: black">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h4>{{recipes[6].recipeName}}</h4>
+            <strong class="text-info" style="font-size: small">Last accessed at {{recipes[6].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-3">
+      <a routerLink="/recipe/{{recipes[7].recipeId}}" style="text-decoration: none; color: black">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h4>{{recipes[7].recipeName}}</h4>
+            <strong class="text-info" style="font-size: small">Last accessed at {{recipes[7].lastAccessed | date: 'HH:mm:ss dd MMM yyyy'}}</strong>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </div>

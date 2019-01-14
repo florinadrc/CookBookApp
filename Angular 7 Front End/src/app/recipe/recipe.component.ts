@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../services/api.service";
 import {ActivatedRoute} from "@angular/router";
 import {Recipe} from "../model/recipe";
-import {formatDate, Location} from "@angular/common";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-recipe',
@@ -12,6 +12,8 @@ import {formatDate, Location} from "@angular/common";
 export class RecipeComponent implements OnInit {
 
   recipe: Recipe;
+  instructions: string[] = [];
+  suggestions: string[] = [];
 
   constructor(
     private apiService: ApiService,
@@ -28,7 +30,11 @@ export class RecipeComponent implements OnInit {
 
   getRecipe(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.apiService.getRecipe(id).subscribe(recipe => this.recipe = recipe);
+    this.apiService.getRecipe(id).subscribe(recipe => {
+      this.recipe = recipe;
+      this.instructions = recipe.instructions.split("\n");
+      this.suggestions = recipe.suggestions.split("\n");
+    });
   }
 
   deleteThisRecipe(): void {
