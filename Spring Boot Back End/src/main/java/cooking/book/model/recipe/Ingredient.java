@@ -10,34 +10,34 @@ public class Ingredient implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ingredientId;
+    private long id;
 
     @NotBlank
-    private String ingredientName;
+    private String name;
 
     private String quantity;
 
     public Ingredient(){}
 
-    public Ingredient(String ingredientName, String quantity) {
-        this.ingredientName = ingredientName;
+    public Ingredient(String name, String quantity) {
+        this.name = name;
         this.quantity = quantity;
     }
 
-    public long getIngredientId() {
-        return ingredientId;
+    public long getId() {
+        return id;
     }
 
-    public void setIngredientId(long ingredientId) {
-        this.ingredientId = ingredientId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getIngredientName() {
-        return ingredientName;
+    public String getName() {
+        return name;
     }
 
-    public void setIngredientName(String ingredientName) {
-        this.ingredientName = ingredientName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getQuantity() {

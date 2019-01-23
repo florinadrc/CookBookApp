@@ -14,15 +14,15 @@ public class Recipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "recipe_id")
-    private long recipeId;
+    private long id;
 
     @NotBlank
-    @Column(name = "recipe_name", columnDefinition = "VARCHAR(255)")
-    private String recipeName;
+    @Column(columnDefinition = "VARCHAR(255)")
+    private String name;
 
     @Enumerated
     @Column(columnDefinition = "smallint")
-    private RecipeCategory recipeCategory;
+    private RecipeCategory category;
 
     @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe_id")
@@ -41,35 +41,35 @@ public class Recipe implements Serializable {
 
     public Recipe(){}
 
-    public Recipe(String recipeName, RecipeCategory recipeCategory, String instructions, String suggestions){
-        this.recipeName = recipeName;
-        this.recipeCategory = recipeCategory;
+    public Recipe(String name, RecipeCategory category, String instructions, String suggestions){
+        this.name = name;
+        this.category = category;
         this.instructions = instructions;
         this.suggestions = suggestions;
     }
 
-    public long getRecipeId() {
-        return recipeId;
+    public long getId() {
+        return id;
     }
 
-    public void setRecipeId(long recipeId) {
-        this.recipeId = recipeId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getRecipeName() {
-        return recipeName;
+    public String getName() {
+        return name;
     }
 
-    public void setRecipeName(String recipeName) {
-        this.recipeName = recipeName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public RecipeCategory getRecipeCategory() {
-        return recipeCategory;
+    public RecipeCategory getCategory() {
+        return category;
     }
 
-    public void setRecipeCategory(RecipeCategory recipeCategory) {
-        this.recipeCategory = recipeCategory;
+    public void setCategory(RecipeCategory category) {
+        this.category = category;
     }
 
     public List<Ingredient> getIngredientsList() {
