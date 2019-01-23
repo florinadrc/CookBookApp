@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,17 +26,17 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<Recipe> getAll(){
+    public List<Recipe> getAll(){
         return recipeRepository.findAll();
     }
 
     @GetMapping(value = "/all/byAccesses")
-    public Iterable<Recipe> getAllByNoOfAccesses(){
+    public List<Recipe> getAllByNoOfAccesses(){
         return recipeRepository.findAllByOrderByNoOfTimesAccessedDesc();
     }
 
     @GetMapping(value = "/all/byCategory/{theCategory}")
-    public Iterable<Recipe> getAllByCategory(@PathVariable String theCategory){
+    public List<Recipe> getAllByCategory(@PathVariable String theCategory){
         RecipeCategory recipeCategory = RecipeCategory.STARTER;
         if(theCategory.equals("1"))
             recipeCategory = RecipeCategory.MAIN_COURSE;
@@ -45,7 +46,7 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/all/byName/{term}")
-    public Iterable<Recipe> getAllByName(@PathVariable String term){
+    public List<Recipe> getAllByName(@PathVariable String term){
         return recipeRepository.findAllByRecipeNameContainingIgnoreCase(term);
     }
 

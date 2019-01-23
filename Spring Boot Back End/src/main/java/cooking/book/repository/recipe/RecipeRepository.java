@@ -2,10 +2,12 @@ package cooking.book.repository.recipe;
 
 import cooking.book.model.recipe.Recipe;
 import cooking.book.model.recipe.RecipeCategory;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RecipeRepository extends CrudRepository<Recipe, Long> {
-    Iterable<Recipe> findAllByRecipeCategory(RecipeCategory recipeCategory);
-    Iterable<Recipe> findAllByRecipeNameContainingIgnoreCase(String recipeName);
-    Iterable<Recipe> findAllByOrderByNoOfTimesAccessedDesc();
+import java.util.List;
+
+public interface RecipeRepository extends JpaRepository<Recipe, Long> {
+    List<Recipe> findAllByRecipeCategory(RecipeCategory recipeCategory);
+    List<Recipe> findAllByRecipeNameContainingIgnoreCase(String recipeName);
+    List<Recipe> findAllByOrderByNoOfTimesAccessedDesc();
 }
