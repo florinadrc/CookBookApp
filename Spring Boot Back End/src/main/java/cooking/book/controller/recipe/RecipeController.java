@@ -27,12 +27,12 @@ public class RecipeController {
         return recipeRepository.findAll();
     }
 
-    @GetMapping(value = "/all/by_accesses")
+    @GetMapping(value = "/all/byAccesses")
     public Iterable<Recipe> getAllByNoOfAccesses(){
         return recipeRepository.findAllByOrderByNoOfTimesAccessedDesc();
     }
 
-    @GetMapping(value = "/all/by_category/{theCategory}")
+    @GetMapping(value = "/all/byCategory/{theCategory}")
     public Iterable<Recipe> getAllByCategory(@PathVariable String theCategory){
         RecipeCategory recipeCategory = RecipeCategory.STARTER;
         if(theCategory.equals("1"))
@@ -42,7 +42,7 @@ public class RecipeController {
         return recipeRepository.findAllByRecipeCategory(recipeCategory);
     }
 
-    @GetMapping(value = "/all/by_name/{term}")
+    @GetMapping(value = "/all/byName/{term}")
     public Iterable<Recipe> getAllByName(@PathVariable String term){
         return recipeRepository.findAllByRecipeNameContainingIgnoreCase(term);
     }
@@ -61,39 +61,39 @@ public class RecipeController {
 
     @GetMapping(value = "/recipe/{id}")
     public Recipe getRecipe(@PathVariable long id){
-        Recipe recipe = recipeRepository.findById(id).orElse(null);
-        Recipe recipe1 = new Recipe();
+        Recipe recipeToSave = recipeRepository.findById(id).orElse(null);
+        Recipe recipeToReturn = new Recipe();
 
-        if (recipe != null) {
-            recipe1.setRecipeId(recipe.getRecipeId());
-            copyRecipe(recipe1, recipe);
-            recipe.setLastAccessed(new Date());
-            recipe.setNoOfTimesAccessed(recipe1.getNoOfTimesAccessed() + 1);
+        if (recipeToSave != null) {
+            recipeToReturn.setId(recipeToSave.getId());
+            copyRecipe(recipeToReturn, recipeToSave);
+            recipeToSave.setLastAccessed(new Date());
+            recipeToSave.setNoOfTimesAccessed(recipeToReturn.getNoOfTimesAccessed() + 1);
         }
 
-        recipeRepository.save(recipe);
+        recipeRepository.save(recipeToSave);
 
-        return recipe1;
+        return recipeToReturn;
     }
 
     @PostMapping(value = "/update/{id}")
     public Recipe updateRecipe(@RequestBody Recipe recipe, @PathVariable long id){
-        Optional<Recipe> recipe1 = recipeRepository.findById(id);
+        Optional<Recipe> recipeToCheck = recipeRepository.findById(id);
 
-        if(recipe1.isPresent()){
-            Recipe _recipe = recipe1.get();
-            copyRecipe(_recipe, recipe);
+        if(recipeToCheck.isPresent()){
+            Recipe recipeToSave = recipeToCheck.get();
+            copyRecipe(recipeToSave, recipe);
 
-            recipeRepository.save(_recipe);
-            return _recipe;
+            recipeRepository.save(recipeToSave);
+            return recipeToSave;
         } else {
             return null;
         }
     }
 
     private void copyRecipe(Recipe recipe1, Recipe recipe2) {
-        recipe1.setRecipeName(recipe2.getRecipeName());
-        recipe1.setRecipeCategory(recipe2.getRecipeCategory());
+        recipe1.setName(recipe2.getName());
+        recipe1.setCategory(recipe2.getCategory());
         recipe1.setIngredientsList(recipe2.getIngredientsList());
         recipe1.setInstructions(recipe2.getInstructions());
         recipe1.setSuggestions(recipe2.getSuggestions());
