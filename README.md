@@ -7,6 +7,7 @@ Spring Boot Back End with Maven and Hibernate, Spring Security with JWT
 MySQL database
 
 
+
 ## How to run:
 
 1. Create schema called 'testdb' on localhost port 3306 in database (or change these values in src/java/main/resources/application.properties as well as the datasource username and password of your choice).
