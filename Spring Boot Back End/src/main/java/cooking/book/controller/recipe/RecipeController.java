@@ -39,12 +39,12 @@ public class RecipeController {
             recipeCategory = RecipeCategory.MAIN_COURSE;
         if(theCategory.equals("2"))
             recipeCategory = RecipeCategory.DESSERT;
-        return recipeRepository.findAllByRecipeCategory(recipeCategory);
+        return recipeRepository.findAllByCategory(recipeCategory);
     }
 
     @GetMapping(value = "/all/byName/{term}")
     public Iterable<Recipe> getAllByName(@PathVariable String term){
-        return recipeRepository.findAllByRecipeNameContainingIgnoreCase(term);
+        return recipeRepository.findAllByNameContainingIgnoreCase(term);
     }
 
     @PostMapping(value = "/create")
