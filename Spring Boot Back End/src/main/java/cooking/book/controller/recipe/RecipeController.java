@@ -39,12 +39,12 @@ public class RecipeController {
             recipeCategory = RecipeCategory.MAIN_COURSE;
         if(theCategory.equals("2"))
             recipeCategory = RecipeCategory.DESSERT;
-        return recipeRepository.findAllByCategory(recipeCategory);
+        return recipeRepository.findAllByRecipeCategory(recipeCategory);
     }
 
     @GetMapping(value = "/all/byName/{term}")
     public Iterable<Recipe> getAllByName(@PathVariable String term){
-        return recipeRepository.findAllByNameContainingIgnoreCase(term);
+        return recipeRepository.findAllByRecipeNameContainingIgnoreCase(term);
     }
 
     @PostMapping(value = "/create")
@@ -65,7 +65,7 @@ public class RecipeController {
         Recipe recipeToReturn = new Recipe();
 
         if (recipeToSave != null) {
-            recipeToReturn.setId(recipeToSave.getId());
+            recipeToReturn.setRecipeId(recipeToSave.getRecipeId());
             copyRecipe(recipeToReturn, recipeToSave);
             recipeToSave.setLastAccessed(new Date());
             recipeToSave.setNoOfTimesAccessed(recipeToReturn.getNoOfTimesAccessed() + 1);
@@ -92,8 +92,8 @@ public class RecipeController {
     }
 
     private void copyRecipe(Recipe recipe1, Recipe recipe2) {
-        recipe1.setName(recipe2.getName());
-        recipe1.setCategory(recipe2.getCategory());
+        recipe1.setRecipeName(recipe2.getRecipeName());
+        recipe1.setRecipeCategory(recipe2.getRecipeCategory());
         recipe1.setIngredientsList(recipe2.getIngredientsList());
         recipe1.setInstructions(recipe2.getInstructions());
         recipe1.setSuggestions(recipe2.getSuggestions());
