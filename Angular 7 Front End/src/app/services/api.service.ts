@@ -28,12 +28,12 @@ export class ApiService {
   }
 
   getRecipesByNoOfAccesses(): Observable<Recipe[]> {
-    let url = `${this.BASE_URL}/all/by_accesses`;
+    let url = `${this.BASE_URL}/all/byAccesses`;
     return this.http.get<Recipe[]>(url);
   }
 
   getRecipesByCategory(recipeCategory: RecipeCategory): Observable<Recipe[]> {
-    let url = `${this.BASE_URL}/all/by_category/${recipeCategory}`;
+    let url = `${this.BASE_URL}/all/byCategory/${recipeCategory}`;
     return this.http.get<Recipe[]>(url);
   }
 
@@ -53,7 +53,7 @@ export class ApiService {
   }
 
   searchRecipes(term: string): Observable<Recipe[]> {
-    let url = `${this.BASE_URL}/all/by_name/${term}`;
+    let url = `${this.BASE_URL}/all/byName/${term}`;
     if(!term.trim())
       return of([]);
     return this.http.get<Recipe[]>(url);
