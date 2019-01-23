@@ -4,7 +4,9 @@ import cooking.book.repository.recipe.RecipeRepository;
 import cooking.book.model.recipe.Recipe;
 import cooking.book.model.recipe.RecipeCategory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -55,12 +57,16 @@ public class RecipeController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public void deleteRecipe(@PathVariable long id){
-        recipeRepository.deleteById(id);
+    public ResponseEntity deleteRecipe(@PathVariable long id){
+        if (recipeRepository.findById(id).isPresent()) {
+            recipeRepository.deleteById(id);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping(value = "/recipe/{id}")
-    public Recipe getRecipe(@PathVariable long id){
+    public ResponseEntity<Recipe> getRecipe(@PathVariable long id){
         Recipe recipeToSave = recipeRepository.findById(id).orElse(null);
         Recipe recipeToReturn = new Recipe();
 
@@ -69,11 +75,13 @@ public class RecipeController {
             copyRecipe(recipeToReturn, recipeToSave);
             recipeToSave.setLastAccessed(new Date());
             recipeToSave.setNoOfTimesAccessed(recipeToReturn.getNoOfTimesAccessed() + 1);
+
+            recipeRepository.save(recipeToSave);
+
+            return new ResponseEntity<>(recipeToReturn, HttpStatus.OK);
         }
 
-        recipeRepository.save(recipeToSave);
-
-        return recipeToReturn;
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping(value = "/update/{id}")
