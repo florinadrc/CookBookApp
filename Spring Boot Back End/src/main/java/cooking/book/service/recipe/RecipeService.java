@@ -4,8 +4,6 @@ import cooking.book.model.recipe.Recipe;
 import cooking.book.model.recipe.RecipeCategory;
 import cooking.book.repository.recipe.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -36,7 +34,7 @@ public class RecipeService {
         recipeRepository.save(recipe);
     }
 
-    public ResponseEntity<Recipe> getRecipe(long id) {
+    public Recipe getRecipe(long id) {
         Recipe recipeToSave = recipeRepository.findById(id).orElse(null);
         Recipe recipeToReturn = new Recipe();
 
@@ -48,9 +46,9 @@ public class RecipeService {
 
             recipeRepository.save(recipeToSave);
 
-            return new ResponseEntity<>(recipeToReturn, HttpStatus.OK);
+            return recipeToReturn;
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return null;
     }
 
     public Recipe updateRecipe(Recipe recipe, long id) {

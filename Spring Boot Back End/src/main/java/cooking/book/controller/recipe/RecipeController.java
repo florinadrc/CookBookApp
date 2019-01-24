@@ -62,7 +62,9 @@ public class RecipeController {
 
     @GetMapping(value = "/recipe/{id}")
     public ResponseEntity<Recipe> getRecipe(@PathVariable long id){
-        return recipeService.getRecipe(id);
+        if (recipeRepository.findById(id).isPresent())
+            return new ResponseEntity<>(recipeService.getRecipe(id), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping(value = "/update/{id}")
