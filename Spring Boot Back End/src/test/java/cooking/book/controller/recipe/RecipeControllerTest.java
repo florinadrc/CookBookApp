@@ -44,7 +44,7 @@ public class RecipeControllerTest {
     }
 
     @Test
-    public void testDeleteRecipe() {
+    public void testDeleteRecipeWhenPresent() {
         Recipe recipe = recipes.get(0);
 
         when(recipeRepository.findById(anyLong())).thenReturn(Optional.ofNullable(recipe));
@@ -53,6 +53,15 @@ public class RecipeControllerTest {
         assertEquals(recipeController.deleteRecipe(anyLong()), new ResponseEntity(HttpStatus.OK));
 
         verify(recipeRepository, atLeastOnce()).deleteById(anyLong());
+    }
+
+    @Test
+    public void testDeleteRecipeWhenNotPresent() {
+        when(recipeRepository.findById(anyLong())).thenReturn(null);
+
+        assertEquals(recipeController.deleteRecipe(anyLong()), new ResponseEntity(HttpStatus.NOT_FOUND));
+
+        verify(recipeRepository, never()).deleteById(anyLong());
     }
 
     @Test
