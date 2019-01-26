@@ -1,1 +1,2 @@
-cooking\book\BookApplicationTests.class
+cooking\book\controller\recipe\RecipeControllerTest.class
+cooking\book\service\recipe\RecipeServiceTest.class

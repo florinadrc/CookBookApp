@@ -57,7 +57,7 @@ public class RecipeControllerTest {
 
     @Test
     public void testDeleteRecipeWhenNotPresent() {
-        when(recipeRepository.findById(anyLong())).thenReturn(null);
+        when(recipeRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         assertEquals(recipeController.deleteRecipe(anyLong()), new ResponseEntity(HttpStatus.NOT_FOUND));
 
