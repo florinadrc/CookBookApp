@@ -32,7 +32,7 @@ public class RecipeControllerTest {
     private RecipeService recipeService;
 
     @InjectMocks
-    private RecipeController recipeController;
+    private RecipeController instance;
 
     @Spy
     List<Recipe> recipes = new ArrayList<>();
@@ -46,7 +46,7 @@ public class RecipeControllerTest {
     @Test
     public void testGetAll() {
         when(recipeRepository.findAll()).thenReturn(recipes);
-        recipeController.getAll();
+        instance.getAll();
 
         verify(recipeRepository, atLeastOnce()).findAll();
     }
@@ -54,7 +54,7 @@ public class RecipeControllerTest {
     @Test
     public void testGetAllByNoOfAccesses() {
         when(recipeRepository.findAllByOrderByNoOfTimesAccessedDesc()).thenReturn(recipes);
-        recipeController.getAllByNoOfAccesses();
+        instance.getAllByNoOfAccesses();
 
         verify(recipeRepository, atLeastOnce()).findAllByOrderByNoOfTimesAccessedDesc();
     }
@@ -66,7 +66,7 @@ public class RecipeControllerTest {
         when(recipeService.findCategory(anyString())).thenReturn(recipe.getRecipeCategory());
         when(recipeRepository.findAllByRecipeCategory(recipeService.findCategory(anyString()))).thenReturn(recipes);
 
-        recipeController.getAllByCategory(anyString());
+        instance.getAllByCategory(anyString());
 
         verify(recipeRepository, atLeastOnce()).findAllByRecipeCategory(any());
         verify(recipeService, atLeastOnce()).findCategory(anyString());
@@ -76,7 +76,7 @@ public class RecipeControllerTest {
     public void testGetAllByName() {
         when(recipeRepository.findAllByRecipeNameContainingIgnoreCase(anyString())).thenReturn(recipes);
 
-        recipeController.getAllByName(anyString());
+        instance.getAllByName(anyString());
 
         verify(recipeRepository, atLeastOnce()).findAllByRecipeNameContainingIgnoreCase(anyString());
     }
@@ -86,7 +86,7 @@ public class RecipeControllerTest {
         Recipe recipe = recipes.get(0);
         doNothing().when(recipeService).newRecipe(recipe);
 
-        recipeController.postRecipe(recipe);
+        instance.postRecipe(recipe);
 
         verify(recipeService, atLeastOnce()).newRecipe(recipe);
     }
@@ -98,7 +98,7 @@ public class RecipeControllerTest {
         when(recipeRepository.findById(anyLong())).thenReturn(Optional.ofNullable(recipe));
         doNothing().when(recipeRepository).deleteById(anyLong());
 
-        assertEquals(recipeController.deleteRecipe(anyLong()), new ResponseEntity(HttpStatus.OK));
+        assertEquals(instance.deleteRecipe(anyLong()), new ResponseEntity(HttpStatus.OK));
 
         verify(recipeRepository, atLeastOnce()).deleteById(anyLong());
     }
@@ -107,7 +107,7 @@ public class RecipeControllerTest {
     public void testDeleteRecipeWhenNotPresent() {
         when(recipeRepository.findById(anyLong())).thenReturn(Optional.empty());
 
-        assertEquals(recipeController.deleteRecipe(anyLong()), new ResponseEntity(HttpStatus.NOT_FOUND));
+        assertEquals(instance.deleteRecipe(anyLong()), new ResponseEntity(HttpStatus.NOT_FOUND));
 
         verify(recipeRepository, never()).deleteById(anyLong());
     }
@@ -119,7 +119,7 @@ public class RecipeControllerTest {
         when(recipeRepository.findById(anyLong())).thenReturn(Optional.ofNullable(recipe));
         when(recipeService.getRecipe(anyLong())).thenReturn(recipe);
 
-        assertEquals(recipeController.getRecipe(anyLong()), new ResponseEntity<>(recipe, HttpStatus.OK));
+        assertEquals(instance.getRecipe(anyLong()), new ResponseEntity<>(recipe, HttpStatus.OK));
 
         verify(recipeService, atLeastOnce()).getRecipe(anyLong());
     }
@@ -128,7 +128,7 @@ public class RecipeControllerTest {
     public void testGetRecipeWhenNotPresent() {
         when(recipeRepository.findById(anyLong())).thenReturn(Optional.empty());
 
-        assertEquals(recipeController.getRecipe(anyLong()), new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        assertEquals(instance.getRecipe(anyLong()), new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
         verify(recipeService, never()).getRecipe(anyLong());
     }
@@ -138,7 +138,7 @@ public class RecipeControllerTest {
         Recipe recipe = recipes.get(0);
         when(recipeService.updateRecipe(any(), anyLong())).thenReturn(recipe);
 
-        recipeController.updateRecipe(any(), anyLong());
+        instance.updateRecipe(any(), anyLong());
 
         verify(recipeService, atLeastOnce()).updateRecipe(any(), anyLong());
     }

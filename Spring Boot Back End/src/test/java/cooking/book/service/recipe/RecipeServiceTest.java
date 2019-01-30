@@ -25,7 +25,7 @@ public class RecipeServiceTest {
     private RecipeRepository recipeRepository;
 
     @InjectMocks
-    private RecipeService recipeService;
+    private RecipeService instance;
 
     @Spy
     private List<Recipe> recipes = new ArrayList<>();
@@ -42,7 +42,7 @@ public class RecipeServiceTest {
 
         when(recipeRepository.save(recipe)).thenReturn(recipe);
 
-        recipeService.newRecipe(recipe);
+        instance.newRecipe(recipe);
 
         verify(recipeRepository, atLeastOnce()).save(recipe);
     }
@@ -54,7 +54,7 @@ public class RecipeServiceTest {
         when(recipeRepository.findById(anyLong())).thenReturn(Optional.ofNullable(recipe));
         when(recipeRepository.save(recipe)).thenReturn(recipe);
 
-        Recipe recipeToReturn = recipeService.getRecipe(anyLong());
+        Recipe recipeToReturn = instance.getRecipe(anyLong());
         assertEquals(recipeToReturn.getRecipeId(), 0);
 
         verify(recipeRepository, atLeastOnce()).findById(anyLong());
@@ -68,7 +68,7 @@ public class RecipeServiceTest {
         when(recipeRepository.findById(anyLong())).thenReturn(Optional.ofNullable(recipe));
         when(recipeRepository.save(recipe)).thenReturn(recipe);
 
-        assertEquals(recipeService.updateRecipe(recipe,anyLong()), recipe);
+        assertEquals(instance.updateRecipe(recipe,anyLong()), recipe);
 
         verify(recipeRepository, atLeastOnce()).findById(anyLong());
         verify(recipeRepository, atLeastOnce()).save(recipe);
