@@ -280,10 +280,9 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Iterable<Recipe> recipeOptionals = recipeRepository.findAll();
-        long size = recipeOptionals.spliterator().getExactSizeIfKnown();
+        Iterable<Recipe> recipes = recipeRepository.findAll();
 
-        if (size == 0) {
+        if (recipes.spliterator().getExactSizeIfKnown() == 0) {
             roleRepository.save(new Role(RoleName.USER));
             roleRepository.save(new Role(RoleName.ADMIN));
 
