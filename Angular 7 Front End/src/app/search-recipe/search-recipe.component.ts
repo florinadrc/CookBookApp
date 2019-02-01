@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from "../services/api.service";
-import {Observable, Subject} from "rxjs";
-import {Recipe} from "../model/recipe";
-import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/operators";
+import {ApiService} from '../services/api.service';
+import {Observable, Subject} from 'rxjs';
+import {Recipe} from '../model/recipe';
+import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-recipe',

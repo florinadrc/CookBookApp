@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiService} from "../services/api.service";
-import {ActivatedRoute} from "@angular/router";
-import {Recipe} from "../model/recipe";
-import {Location} from "@angular/common";
+import {ApiService} from '../services/api.service';
+import {ActivatedRoute} from '@angular/router';
+import {Recipe} from '../model/recipe';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-recipe',
@@ -23,7 +23,7 @@ export class RecipeComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      let id= +params['id'];
+      let id = +params['id'];
       this.getRecipe();
     });
   }
@@ -32,20 +32,20 @@ export class RecipeComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.apiService.getRecipe(id).subscribe(recipe => {
       this.recipe = recipe;
-      this.instructions = recipe.instructions.split("\n");
-      this.suggestions = recipe.suggestions.split("\n");
+      this.instructions = recipe.instructions.split('\n');
+      this.suggestions = recipe.suggestions.split('\n');
     });
   }
 
   deleteThisRecipe(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    if(confirm("Are you sure you want to delete this recipe?")){
+    if (confirm('Are you sure you want to delete this recipe?')) {
       this.apiService.deleteRecipe(id).subscribe(
         res => {
-          alert("Recipe deleted successfully");
+          alert('Recipe deleted successfully');
           this.location.back();
         },
-        err => alert("Error occurred while deleting recipe")
+        err => alert('Error occurred while deleting recipe')
       );
     }
   }

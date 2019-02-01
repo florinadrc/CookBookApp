@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Recipe} from "../model/recipe";
-import {ApiService} from "../services/api.service";
-import {ActivatedRoute} from "@angular/router";
-import {Ingredient} from "../model/ingredient";
-import {RecipeCategory} from "../model/recipe-category";
-import {OptionCategory} from "../model/option-category";
-import {Location} from "@angular/common";
+import {Recipe} from '../model/recipe';
+import {ApiService} from '../services/api.service';
+import {ActivatedRoute} from '@angular/router';
+import {Ingredient} from '../model/ingredient';
+import {RecipeCategory} from '../model/recipe-category';
+import {OptionCategory} from '../model/option-category';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-update-recipe',
@@ -23,9 +23,9 @@ export class UpdateRecipeComponent implements OnInit {
   };
 
   opts: OptionCategory[] = [
-    { id: RecipeCategory.STARTER, name: "Starter" },
-    { id: RecipeCategory.MAIN_COURSE, name: "Main Course" },
-    { id: RecipeCategory.DESSERT, name: "Dessert" }
+    { id: RecipeCategory.STARTER, name: 'Starter' },
+    { id: RecipeCategory.MAIN_COURSE, name: 'Main Course' },
+    { id: RecipeCategory.DESSERT, name: 'Dessert' }
   ];
 
   filterCategory(theCategory: RecipeCategory) {
@@ -53,7 +53,7 @@ export class UpdateRecipeComponent implements OnInit {
   }
 
   deleteFromIngredientsList(ingredient: Ingredient) {
-    let indexOfIngredient = this.recipe.ingredientsList.indexOf(ingredient);
+    const indexOfIngredient = this.recipe.ingredientsList.indexOf(ingredient);
     this.recipe.ingredientsList.splice(indexOfIngredient, 1);
   }
 
@@ -64,8 +64,8 @@ export class UpdateRecipeComponent implements OnInit {
         this.location.back();
       },
       err => {
-        alert("An error has occurred while updating recipe");
+        alert('An error has occurred while updating recipe');
       }
-    )
+    );
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from "../services/api.service";
-import {Recipe} from "../model/recipe";
+import {ApiService} from '../services/api.service';
+import {Recipe} from '../model/recipe';
 
 @Component({
   selector: 'app-popular',
@@ -19,7 +19,7 @@ export class PopularComponent implements OnInit {
         this.recipes = res;
       },
       err => {
-        alert("Error occurred while getting recipes");
+        alert('Error occurred while getting recipes');
       }
     );
   }

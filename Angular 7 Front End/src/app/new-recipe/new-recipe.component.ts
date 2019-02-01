@@ -15,12 +15,12 @@ export class NewRecipeComponent implements OnInit {
 
   model: Recipe = {
     recipeId: 0,
-    recipeName:'',
+    recipeName: '',
     recipeCategory: RecipeCategory.STARTER,
     ingredientsList: [],
-    instructions:'',
-    suggestions:'',
-    lastAccessed:'',
+    instructions: '',
+    suggestions: '',
+    lastAccessed: '',
     noOfTimesAccessed: 0
   };
 
@@ -31,9 +31,9 @@ export class NewRecipeComponent implements OnInit {
   };
 
   opts: OptionCategory[] = [
-    { id: RecipeCategory.STARTER, name: "Starter" },
-    { id: RecipeCategory.MAIN_COURSE, name: "Main Course" },
-    { id: RecipeCategory.DESSERT, name: "Dessert" }
+    { id: RecipeCategory.STARTER, name: 'Starter' },
+    { id: RecipeCategory.MAIN_COURSE, name: 'Main Course' },
+    { id: RecipeCategory.DESSERT, name: 'Dessert' }
   ];
 
   filterCategory(theCategory: RecipeCategory) {
@@ -53,7 +53,7 @@ export class NewRecipeComponent implements OnInit {
         this.location.back();
       },
       err => {
-        alert("An error has occurred while sending recipe details");
+        alert('An error has occurred while sending recipe details');
       }
     );
   }
