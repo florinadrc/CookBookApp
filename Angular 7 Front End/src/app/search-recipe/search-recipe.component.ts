@@ -11,7 +11,6 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 })
 export class SearchRecipeComponent implements OnInit {
 
-  recipess$: Observable<Recipe[]>;
   recipes$: Observable<Recipe[]>;
   private searchTerms = new Subject<string>();
 
