@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Recipe} from "../model/recipe";
-import {RecipeCategory} from "../model/recipe-category";
-import {ApiService} from "../services/api.service";
-import {Location} from "@angular/common";
-import {Ingredient} from "../model/ingredient";
-import {OptionCategory} from "../model/option-category";
+import {Recipe} from '../model/recipe';
+import {RecipeCategory} from '../model/recipe-category';
+import {ApiService} from '../services/api.service';
+import {Location} from '@angular/common';
+import {Ingredient} from '../model/ingredient';
+import {OptionCategory} from '../model/option-category';
 
 @Component({
   selector: 'app-new-recipe',

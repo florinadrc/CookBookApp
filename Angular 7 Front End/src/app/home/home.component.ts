@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TokenStorageService} from "../auth/token-storage.service";
-import {ApiService} from "../services/api.service";
+import {TokenStorageService} from '../auth/token-storage.service';
+import {ApiService} from '../services/api.service';
 
 @Component({
   selector: 'app-home',

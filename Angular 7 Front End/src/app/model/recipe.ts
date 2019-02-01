@@ -1,5 +1,5 @@
-import {RecipeCategory} from "./recipe-category";
-import {Ingredient} from "./ingredient";
+import {RecipeCategory} from './recipe-category';
+import {Ingredient} from './ingredient';
 
 export interface Recipe {
   recipeId: number;
