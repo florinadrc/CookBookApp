@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class ApiService {
 
-  private BASE_URL = 'http://localhost:8080/recipes';
+  private BASE_URL = 'http://localhost:8080/api/recipes';
 
   constructor(private http: HttpClient) { }
 
