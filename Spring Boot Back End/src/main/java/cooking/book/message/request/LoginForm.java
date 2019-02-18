@@ -13,6 +13,11 @@ public class LoginForm {
     @Size(min = 6, max = 100)
     private String password;
 
+    public LoginForm(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public String getUsername(){
         return username;
     }
