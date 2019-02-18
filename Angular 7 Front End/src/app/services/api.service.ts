@@ -24,22 +24,22 @@ export class ApiService {
 
   getRecipes(): Observable<Recipe[]> {
     const url = `${this.BASE_URL}/all`;
-    return this.http.get<Recipe[]>(url);
+    return this.http.get<Recipe[]>(url, httpOptions);
   }
 
   getRecipesByNoOfAccesses(): Observable<Recipe[]> {
     const url = `${this.BASE_URL}/all/byAccesses`;
-    return this.http.get<Recipe[]>(url);
+    return this.http.get<Recipe[]>(url, httpOptions);
   }
 
   getRecipesByCategory(recipeCategory: RecipeCategory): Observable<Recipe[]> {
     const url = `${this.BASE_URL}/all/byCategory/${recipeCategory}`;
-    return this.http.get<Recipe[]>(url);
+    return this.http.get<Recipe[]>(url, httpOptions);
   }
 
   getRecipe(id: number): Observable<Recipe> {
     const url = `${this.BASE_URL}/recipe/${id}`;
-    return this.http.get<Recipe>(url);
+    return this.http.get<Recipe>(url, httpOptions);
   }
 
   updateRecipe(recipe: Recipe, id: number): Observable<any> {
@@ -49,7 +49,7 @@ export class ApiService {
 
   deleteRecipe(id: number): Observable<any> {
     const url = `${this.BASE_URL}/delete/${id}`;
-    return this.http.delete(url);
+    return this.http.delete(url, httpOptions);
   }
 
   searchRecipes(term: string): Observable<Recipe[]> {
@@ -57,6 +57,6 @@ export class ApiService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Recipe[]>(url);
+    return this.http.get<Recipe[]>(url, httpOptions);
   }
 }

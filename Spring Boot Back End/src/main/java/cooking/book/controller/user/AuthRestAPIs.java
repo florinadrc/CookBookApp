@@ -49,7 +49,7 @@ public class AuthRestAPIs {
         this.jwtProvider = jwtProvider;
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginForm) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginForm.getUsername(), loginForm.getPassword()

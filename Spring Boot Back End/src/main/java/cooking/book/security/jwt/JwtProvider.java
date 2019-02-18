@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import javax.xml.bind.DatatypeConverter;
 import java.util.Date;
 
 @Component
@@ -24,17 +25,21 @@ public class JwtProvider {
     public String generateJwtToken(Authentication authentication){
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
 
+        byte[] signingKey = DatatypeConverter.parseBase64Binary(jwtSecret);
+
         return Jwts.builder()
                 .setSubject(userPrinciple.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpiration*1000))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .signWith(SignatureAlgorithm.HS512, signingKey)
                 .compact();
     }
 
-    public boolean validateJwtToken(String authToken){
+    boolean validateJwtToken(String authToken){
+        byte[] signingKey = DatatypeConverter.parseBase64Binary(jwtSecret);
+
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            Jwts.parser().setSigningKey(signingKey).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
             logger.error("Invalid JWT signature -> Message: {}", e);
@@ -51,9 +56,11 @@ public class JwtProvider {
         return false;
     }
 
-    public String getUserNameFromJwtToken(String token){
+    String getUserNameFromJwtToken(String token){
+        byte[] signingKey = DatatypeConverter.parseBase64Binary(jwtSecret);
+
         return Jwts.parser()
-                .setSigningKey(jwtSecret)
+                .setSigningKey(signingKey)
                 .parseClaimsJws(token)
                 .getBody().getSubject();
     }
