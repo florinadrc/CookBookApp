@@ -5,14 +5,18 @@ import cooking.book.model.recipe.Recipe;
 import cooking.book.model.recipe.RecipeCategory;
 import cooking.book.model.user.Role;
 import cooking.book.model.user.RoleName;
+import cooking.book.model.user.User;
 import cooking.book.repository.recipe.RecipeRepository;
 import cooking.book.repository.user.RoleRepository;
+import cooking.book.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.Optional;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Component
@@ -270,10 +274,16 @@ public class DatabaseSeeder implements CommandLineRunner {
 
     private RoleRepository roleRepository;
 
+    private UserRepository userRepository;
+
+    private PasswordEncoder encoder;
+
     @Autowired
-    public DatabaseSeeder(RecipeRepository recipeRepository, RoleRepository roleRepository) {
+    public DatabaseSeeder(RecipeRepository recipeRepository, RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder encoder) {
         this.recipeRepository = recipeRepository;
         this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
+        this.encoder = encoder;
     }
 
 
@@ -285,6 +295,13 @@ public class DatabaseSeeder implements CommandLineRunner {
         if (recipes.spliterator().getExactSizeIfKnown() == 0) {
             roleRepository.save(new Role(RoleName.USER));
             roleRepository.save(new Role(RoleName.ADMIN));
+            User user = new User("test", "username", "test1@test.test", encoder.encode("password"));
+            Set<Role> roles = new HashSet<>();
+            Role userRole = roleRepository.findByRoleName(RoleName.USER)
+                    .orElseThrow(() -> new RuntimeException("Failed: User role not found!"));
+            roles.add(userRole);
+            user.setRoles(roles);
+            userRepository.save(user);
 
             for (int i = 0; i < recipeNames.length; i++) {
 
